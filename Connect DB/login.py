@@ -11,6 +11,7 @@ class LoginForm(QMainWindow):
         uic.loadUi("Login.ui", self)
         self.btnLogin.clicked.connect(self.login)
         self.btnRegister.clicked.connect(self.register)
+        self.registerForm = None
 
     def login(self):
         if not db.connectDB():
@@ -40,7 +41,10 @@ class LoginForm(QMainWindow):
 
     def register(self):
         registerForm = RegisterForm()
+        self.registerForm = registerForm
         registerForm.show()
+        if registerForm.is_closed:
+            self.show()
     
 
 
